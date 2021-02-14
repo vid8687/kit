@@ -16,7 +16,17 @@ local NAMES =
 	path.cpp
 	#png utils:
 	load_save_png.cpp
-	;
+	#imgui backend:
+	imgui_impl_opengl3.cpp
+	imgui_impl_sdl.cpp
+	#imgui core
+	imgui.cpp
+	imgui_draw.cpp
+	imgui_tables.cpp
+	imgui_widgets.cpp
+	imgui_demo.cpp
+	
+;
 
 if $(KIT_USE_JPEG) = 1 {
 	NAMES += load_save_jpeg.cpp ;
