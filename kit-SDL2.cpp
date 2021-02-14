@@ -209,14 +209,19 @@ int main(int argc, char **argv) {
 			{
 				ImGui_ImplOpenGL3_NewFrame();
 				ImGui_ImplSDL2_NewFrame(window);
-				// make the default frame so that kit users can directly start with ImGui::XXXX
-				ImGui::NewFrame();			
+						
 			}
 #endif
 			{
 				static SDL_Event evt;
 				kit::Button::clear_events();
 				while (SDL_PollEvent(&evt) == 1 && mode) {
+
+				{
+#ifdef USE_IMGUI
+						ImGui_ImplSDL2_ProcessEvent(&evt); // also pass this to imgui
+#endif
+				}
 
 #ifdef KIT_RAW_SDL_EVENTS
 					mode->handle_event(evt);
@@ -293,11 +298,7 @@ int main(int argc, char **argv) {
 						kit::set_mode(nullptr);
 					}
 
-					{
-#ifdef USE_IMGUI
-						ImGui_ImplSDL2_ProcessEvent(&evt); // also pass this to imgui
-#endif
-					}
+
 
 				}
 			}
@@ -322,11 +323,13 @@ int main(int argc, char **argv) {
 			//Draw ImGui stuff
 			{
 #ifdef USE_IMGUI
+				
 				ImGui::Render();
 				ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 #endif
 			}
-
+				
 
 			SDL_GL_SwapWindow(window);
 		}
