@@ -219,7 +219,9 @@ int main(int argc, char **argv) {
 
 				{
 #ifdef USE_IMGUI
+
 						ImGui_ImplSDL2_ProcessEvent(&evt); // also pass this to imgui
+						// Note: kit doesn't filter events that are handled by imgui and passes everything forward, applications can filter by looking at wantCapture flags
 #endif
 				}
 
