@@ -121,7 +121,6 @@ int main(int argc, char **argv) {
 		IMGUI_CHECKVERSION();
 	
 		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); 
 		ImGui::StyleColorsDark();
 		ImGui_ImplSDL2_InitForOpenGL(window, context);
 		ImGui_ImplOpenGL3_Init(nullptr);
